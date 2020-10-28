@@ -7,6 +7,7 @@ import App from "./components/App.vue";
 import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
+import CenteredLoader from "@/components/global/CenteredLoader";
 
 import "./assets/style.scss";
 
@@ -14,6 +15,7 @@ Vue.config.productionTip = false;
 
 Vue.use(BootstrapVue);
 Vue.use(VueAxios, Axios);
+Vue.component("centered-loader", CenteredLoader);
 
 new Vue({
   router,

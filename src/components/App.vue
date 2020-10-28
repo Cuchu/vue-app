@@ -1,26 +1,39 @@
 <template>
   <div>
-    <div v-if="loading">Loading..</div>
-    <div v-if="!loading && !error">Welcome</div>
+    <navigation-bar />
+    <div v-if="loading">
+      <centered-loader></centered-loader>
+    </div>
+    <div v-if="!loading && !error">
+      <div class="container mt-4">
+        <div class="card">
+          <div class="card-body">
+            <h1>Hey, welcome</h1>
+          </div>
+        </div>
+      </div>
+    </div>
     <div v-if="!loading && error">Error!!</div>
   </div>
 </template>
 
 <script>
-import {mapActions} from "vuex";
+import NavigationBar from "./layout/NavigationBar";
+import { mapActions } from "vuex";
 
 export default {
   name: "App",
+  components: { NavigationBar },
 
   data() {
     return {
       loading: true,
-      error: false
-    }
+      error: false,
+    };
   },
 
   methods: {
-    ...mapActions(["initialLoad"])
+    ...mapActions(["initialLoad"]),
   },
 
   async mounted() {
@@ -30,9 +43,8 @@ export default {
     } catch (error) {
       this.loading = false;
       this.error = true;
-
     }
-  }
+  },
 };
 </script>
 
